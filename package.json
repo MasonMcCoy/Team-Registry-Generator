@@ -1,0 +1,15 @@
+{
+  "name": "team-registry-generator",
+  "version": "1.0.0",
+  "description": "Takes inputs about team members and creates HTML templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Mason McCoy",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^6.5.0",
+    "jest": "^24.9.0"
+  }
+}
