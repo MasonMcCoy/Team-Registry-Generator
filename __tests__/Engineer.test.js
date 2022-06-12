@@ -6,7 +6,7 @@ describe("Engineer", () => {
         it("should inherit from the Employee class", () => {
             const engineer = new Engineer();
 
-            expect(engineer.prototype instanceof Employee).toBe(true);
+            expect(Object.getPrototypeOf(engineer) instanceof Employee).toBe(true);
         })
 
         it("should return a class containing a 'github' property", () => {
@@ -20,7 +20,7 @@ describe("Engineer", () => {
         it("should return the provided engineer's GitHub username", () => {
             const engineer = new Engineer("Benny Hana", 2, "bhana@aol.gov", "BennyHana");
 
-            expect(engineer.getGithub()).toHaveReturnedWith("github.com/BennyHana");
+            expect(engineer.getGithub()).toBe("github.com/BennyHana");
         })
     })
 
@@ -28,7 +28,7 @@ describe("Engineer", () => {
         it("should return 'Engineer'", () => {
             const engineer = new Engineer();
 
-            expect(engineer.getRole()).toHaveReturnedWith("Engineer");
+            expect(engineer.getRole()).toBe("Engineer");
         })
     })
 })

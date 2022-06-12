@@ -6,7 +6,7 @@ describe("Manager", () => {
         it("should inherit from the Employee class", () => {
             const manager = new Manager();
 
-            expect(manager.prototype instanceof Employee).toBe(true);
+            expect(Object.getPrototypeOf(manager) instanceof Employee).toBe(true);
         })
 
         it("should return a class containing an 'officeNumber' property", () => {
@@ -20,7 +20,7 @@ describe("Manager", () => {
         it("should return 'Manager'", () => {
             const manager = new Manager();
 
-            expect(manager.getRole()).toHaveReturnedWith("Manager");
+            expect(manager.getRole()).toBe("Manager");
         })
     })
 })

@@ -25,7 +25,7 @@ describe("Employee", () => {
         it("should return the provided employee name", () => {
             const employee = new Employee("Tommy Salami", 1, "tsalami@hotmail.net");
 
-            expect(employee.getName()).toHaveReturnedWith("Tommy Salami");
+            expect(employee.getName()).toBe("Tommy Salami");
         })
     })
 
@@ -33,7 +33,7 @@ describe("Employee", () => {
         it("should return the provided employee ID", () => {
             const employee = new Employee("Tommy Salami", 1, "tsalami@hotmail.net");
 
-            expect(employee.getId()).toHaveReturnedWith(1);
+            expect(employee.getId()).toBe(1);
         })
     })
 
@@ -41,7 +41,7 @@ describe("Employee", () => {
         it("should return the provided employee email", () => {
             const employee = new Employee("Tommy Salami", 1, "tsalami@hotmail.net");
 
-            expect(employee.getEmail()).toHaveReturnedWith("tsalami@hotmail.net");
+            expect(employee.getEmail()).toBe("tsalami@hotmail.net");
         })
     })
 
@@ -49,7 +49,7 @@ describe("Employee", () => {
         it("should return 'Employee'", () => {
             const employee = new Employee();
 
-            expect(employee.getRole()).toHaveReturnedWith("Employee");
+            expect(employee.getRole()).toBe("Employee");
         })
     })
 })
