@@ -19,7 +19,7 @@ describe("Manager", () => {
         it("should return 'Manager'", () => {
             const employee = new Employee();
 
-            expect(employee.getRole()).toBe("Manager");
+            expect(employee.getRole()).toHaveReturnedWith("Manager");
         })
     })
 })
