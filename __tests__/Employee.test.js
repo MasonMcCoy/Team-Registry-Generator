@@ -2,7 +2,7 @@ const Employee = require("../lib/employee");
 
 describe("Employee", () => {
     describe("Initialization", () => {
-        it("should return a class containing 'name', 'id', and 'email' properties when called with the 'new' keyword", () => {
+        it("should return a class containing 'name', 'id', and 'email' properties", () => {
             const employee = new Employee();
 
             expect("name" && "id" && "email" in employee).toEqual(true);
@@ -47,7 +47,7 @@ describe("Employee", () => {
 
     describe("getRole", () => {
         it("should return 'Employee'", () => {
-            const employee = new Employee("Tommy Salami", 1, "tsalami@hotmail.net");
+            const employee = new Employee();
 
             expect(employee.getRole()).toBe("Employee");
         })
