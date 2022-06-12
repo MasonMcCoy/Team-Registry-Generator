@@ -1,4 +1,5 @@
 const Manager = require("../lib/manager");
+const Employee = require("../lib/employee");
 
 describe("Manager", () => {
     describe("Initialization", () => {
@@ -17,9 +18,9 @@ describe("Manager", () => {
 
     describe("getRole", () => {
         it("should return 'Manager'", () => {
-            const employee = new Employee();
+            const manager = new Manager();
 
-            expect(employee.getRole()).toHaveReturnedWith("Manager");
+            expect(manager.getRole()).toHaveReturnedWith("Manager");
         })
     })
 })

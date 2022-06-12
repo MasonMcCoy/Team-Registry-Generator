@@ -1,4 +1,5 @@
 const Engineer = require("../lib/engineer");
+const Employee = require("../lib/employee");
 
 describe("Engineer", () => {
     describe("Initialization", () => {
@@ -8,7 +9,7 @@ describe("Engineer", () => {
             expect(engineer.prototype instanceof Employee).toBe(true);
         })
 
-        it("should return a class containing an 'gitHub' property", () => {
+        it("should return a class containing a 'gitHub' property", () => {
             const engineer = new Engineer();
 
             expect("gitHub" in engineer).toEqual(true);
