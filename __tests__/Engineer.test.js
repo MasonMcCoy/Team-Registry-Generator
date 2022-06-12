@@ -9,18 +9,18 @@ describe("Engineer", () => {
             expect(engineer.prototype instanceof Employee).toBe(true);
         })
 
-        it("should return a class containing a 'gitHub' property", () => {
+        it("should return a class containing a 'github' property", () => {
             const engineer = new Engineer();
 
-            expect("gitHub" in engineer).toEqual(true);
+            expect("github" in engineer).toEqual(true);
         })
     })
 
-    describe("getGitHub", () => {
+    describe("getGithub", () => {
         it("should return the provided engineer's GitHub username", () => {
             const engineer = new Engineer("Benny Hana", 2, "bhana@aol.gov", "BennyHana");
 
-            expect(engineer.getGitHub()).toHaveReturnedWith("github.com/BennyHana");
+            expect(engineer.getGithub()).toHaveReturnedWith("github.com/BennyHana");
         })
     })
 
