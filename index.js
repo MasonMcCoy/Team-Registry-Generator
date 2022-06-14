@@ -31,7 +31,9 @@ function newEmployee(employeeType) {
                 }
             ])
             .then((r) => {
-                console.log(new Engineer(r.engName, r.engID, r.engEmail, r.github));
+                let engineer = new Engineer(r.engName, r.engID, r.engEmail, r.github);
+                htmlGen.addCard(htmlGen.writeHTML(engineer));
+
                 renderMenu();
             })
     }
@@ -60,7 +62,9 @@ function newEmployee(employeeType) {
                 }
             ])
             .then((r) => {
-                console.log(new Intern(r.internName, r.internID, r.internEmail, r.school));
+                let intern = new Intern(r.internName, r.internID, r.internEmail, r.school);
+                htmlGen.addCard(htmlGen.writeHTML(intern));
+
                 renderMenu();
             })
     }
@@ -83,8 +87,6 @@ function renderMenu() {
         .then((response) => {
             if (response.employeeType === "Finish") {
                 console.log("Team complete!");
-
-                // htmlGen.createFile(htmlGen.writeHTML());
             } else {
                 newEmployee(response.employeeType);
             }
@@ -115,7 +117,10 @@ inquirer
         }
     ])
     .then((r) => {
+        htmlGen.newHTML();
+
         let manager = new Manager(r.managerName, r.managerID, r.managerEmail, r.officeNumber);
-        htmlGen.createFile(htmlGen.writeHTML(manager));
+        htmlGen.addCard(htmlGen.writeHTML(manager));
+        
         renderMenu();
     })

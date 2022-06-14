@@ -1,23 +1,34 @@
 const fs = require("fs");
 
-// Write to HTML file
-function createFile(data) {
-    fs.writeFile("./dist/index.html", data, (err) => {
+function newHTML() {
+    let header = `<h1>My Team</h1>` 
+
+    fs.writeFile("./dist/index.html", header, (err) => {
         if (err) {
             console.log(err);
         }
     })
 }
 
+// Write to HTML file
+function addCard(data) {
+    fs.appendFile("./dist/index.html", data, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+// Renders team member data to HTML
 function writeHTML(employee) {
     return `
-    <h1>My Team</h1>
-    ${employee.getName()}
-    ${employee.getRole()}
-    ${employee.getId()}
-    ${employee.getEmail()}
+    <h2>${employee.getName()}</h2>
+    <h3>${employee.getRole()}</h3>
+    <p>${employee.getId()}</p>
+    <p>${employee.getEmail()}</p>
     `
 }
 
-module.exports.createFile = createFile;
+module.exports.newHTML = newHTML;
+module.exports.addCard = addCard;
 module.exports.writeHTML = writeHTML;
