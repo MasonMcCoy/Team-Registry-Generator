@@ -1,4 +1,6 @@
 const inquirer = require("inquirer");
+const htmlGen = require("./src/generateHTML");
+
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
@@ -58,7 +60,7 @@ function newEmployee(employeeType) {
                 }
             ])
             .then((r) => {
-                console.log(new Engineer(r.internName, r.internID, r.internEmail, r.school));
+                console.log(new Intern(r.internName, r.internID, r.internEmail, r.school));
                 renderMenu();
             })
     }
@@ -81,6 +83,8 @@ function renderMenu() {
         .then((response) => {
             if (response.employeeType === "Finish") {
                 console.log("Team complete!");
+
+                // htmlGen.createFile(htmlGen.writeHTML());
             } else {
                 newEmployee(response.employeeType);
             }
@@ -106,12 +110,12 @@ inquirer
         },
         {
             type: "input",
-            message: "Office ID:",
-            name: "officeID"
+            message: "Office Number:",
+            name: "officeNumber"
         }
     ])
     .then((r) => {
-        console.log(new Manager(r.managerName, r.managerID, r.managerEmail, r.officeID));
-        
+        let manager = new Manager(r.managerName, r.managerID, r.managerEmail, r.officeNumber);
+        htmlGen.createFile(htmlGen.writeHTML(manager));
         renderMenu();
     })
