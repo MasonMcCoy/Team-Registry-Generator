@@ -19,13 +19,26 @@ function addCard(data) {
     })
 }
 
+function renderProperty(employee) {
+    if (employee.officeNumber) {
+        return `<p>Office Number: ${employee.officeNumber}</p>`;
+    }
+    if (employee.github) {
+        return `<p>GitHub: ${employee.getGithub()}</p>`;
+    }
+    if (employee.school) {
+        return `<p>School: ${employee.getSchool()}</p>`;
+    }
+}
+
 // Renders team member data to HTML
 function writeHTML(employee) {
     return `
     <h2>${employee.getName()}</h2>
     <h3>${employee.getRole()}</h3>
-    <p>${employee.getId()}</p>
-    <p>${employee.getEmail()}</p>
+    <p>ID: ${employee.getId()}</p>
+    <p>Email: ${employee.getEmail()}</p>
+    ${renderProperty(employee)}
     `
 }
 
