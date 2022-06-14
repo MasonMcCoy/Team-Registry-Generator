@@ -1,44 +1,117 @@
 const inquirer = require("inquirer");
 const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+
+function newEmployee(employeeType) {
+    if (employeeType === "Engineer") {
+        inquirer
+            .prompt([
+                {
+                    type: "input",
+                    message: "Engineer Name:",
+                    name: "engName"
+                },
+                {
+                    type: "input",
+                    message: "Engineer Employee ID:",
+                    name: "engID"
+                },
+                {
+                    type: "input",
+                    message: "Engineer Email:",
+                    name: "engEmail"
+                },
+                {
+                    type: "input",
+                    message: "GitHub Username:",
+                    name: "github"
+                }
+            ])
+            .then((r) => {
+                console.log(new Engineer(r.engName, r.engID, r.engEmail, r.github));
+                renderMenu();
+            })
+    }
+    if (employeeType === "Intern") {
+        inquirer
+            .prompt([
+                {
+                    type: "input",
+                    message: "Intern Name:",
+                    name: "internName"
+                },
+                {
+                    type: "input",
+                    message: "Intern Employee ID:",
+                    name: "internID"
+                },
+                {
+                    type: "input",
+                    message: "Intern Email:",
+                    name: "internEmail"
+                },
+                {
+                    type: "input",
+                    message: "School:",
+                    name: "school"
+                }
+            ])
+            .then((r) => {
+                console.log(new Engineer(r.internName, r.internID, r.internEmail, r.school));
+                renderMenu();
+            })
+    }
+}
+
+function renderMenu() {
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                message: "Choose an employee to add:",
+                choices: [
+                    "Engineer",
+                    "Intern",
+                    "Finish"
+                ],
+                name: "employeeType"
+            }
+        ])
+        .then((response) => {
+            if (response.employeeType === "Finish") {
+                console.log("Team complete!");
+            } else {
+                newEmployee(response.employeeType);
+            }
+        })
+}
 
 inquirer
     .prompt([
         {
             type: "input",
-            message: "Team Mananger Name: ",
+            message: "Team Mananger Name:",
             name: "managerName"
         },
         {
             type: "input",
-            message: "Manager Employee ID: ",
+            message: "Manager Employee ID:",
             name: "managerID"
         },
         {
             type: "input",
-            message: "Manager Email: ",
+            message: "Manager Email:",
             name: "managerEmail"
         },
         {
             type: "input",
-            message: "Office ID: ",
+            message: "Office ID:",
             name: "officeID"
         }
     ])
-    .then((response) => {
-        console.log(new Manager(response.managerName, response.managerID, response.managerEmail, response.officeID));
+    .then((r) => {
+        console.log(new Manager(r.managerName, r.managerID, r.managerEmail, r.officeID));
         
-        inquirer
-            .prompt([
-                {
-                    type: "list",
-                    message: "Choose an employee to add: ",
-                    choices: [
-                        "Engineer",
-                        "Intern"
-                    ],
-                    name: "employeeType"
-                }
-            ])
-            .then((response) =>
-                console.log(response.employeeType))
+        renderMenu();
     })
