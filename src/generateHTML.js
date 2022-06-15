@@ -1,9 +1,16 @@
 const fs = require("fs");
 
-function newHTML() {
-    let header = `<h1>My Team</h1>` 
+function newHTML(manager) {
+    let head = 
+        `<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./assets/styles.css">
+<title>${manager}'s Team</title>
+</head>
+    <h1>My Team</h1>`;
 
-    fs.writeFile("./dist/index.html", header, (err) => {
+    fs.writeFile("./dist/index.html", head, (err) => {
         if (err) {
             console.log(err);
         }
@@ -11,7 +18,7 @@ function newHTML() {
 }
 
 // Write to HTML file
-function addCard(data) {
+function writeHTML(data) {
     fs.appendFile("./dist/index.html", data, (err) => {
         if (err) {
             console.log(err);
@@ -24,7 +31,7 @@ function renderProperty(employee) {
         return `<p>Office Number: ${employee.officeNumber}</p>`;
     }
     if (employee.github) {
-        return `<p>GitHub: ${employee.getGithub()}</p>`;
+        return `<p>GitHub: <a href="${employee.getGithub()}" target="_blank">${employee.github}</a></p>`;
     }
     if (employee.school) {
         return `<p>School: ${employee.getSchool()}</p>`;
@@ -32,16 +39,20 @@ function renderProperty(employee) {
 }
 
 // Renders team member data to HTML
-function writeHTML(employee) {
+function addCard(employee) {
     return `
     <h2>${employee.getName()}</h2>
     <h3>${employee.getRole()}</h3>
     <p>ID: ${employee.getId()}</p>
-    <p>Email: ${employee.getEmail()}</p>
+    <p>Email: <span class="email">${employee.getEmail()}</span></p>
     ${renderProperty(employee)}
     `
 }
 
+const scripts = `<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="./assets/script.js"></script>`
+
 module.exports.newHTML = newHTML;
 module.exports.addCard = addCard;
 module.exports.writeHTML = writeHTML;
+module.exports.scripts = scripts

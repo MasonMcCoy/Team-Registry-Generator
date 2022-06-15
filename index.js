@@ -32,7 +32,7 @@ function newEmployee(employeeType) {
             ])
             .then((r) => {
                 let engineer = new Engineer(r.engName, r.engID, r.engEmail, r.github);
-                htmlGen.addCard(htmlGen.writeHTML(engineer));
+                htmlGen.writeHTML(htmlGen.addCard(engineer));
 
                 renderMenu();
             })
@@ -63,7 +63,7 @@ function newEmployee(employeeType) {
             ])
             .then((r) => {
                 let intern = new Intern(r.internName, r.internID, r.internEmail, r.school);
-                htmlGen.addCard(htmlGen.writeHTML(intern));
+                htmlGen.writeHTML(htmlGen.addCard(intern));
 
                 renderMenu();
             })
@@ -87,6 +87,7 @@ function renderMenu() {
         .then((response) => {
             if (response.employeeType === "Finish") {
                 console.log("Team complete!");
+                htmlGen.writeHTML(htmlGen.scripts) // THIS IS UNTESTED
             } else {
                 newEmployee(response.employeeType);
             }
@@ -117,10 +118,10 @@ inquirer
         }
     ])
     .then((r) => {
-        htmlGen.newHTML();
+        htmlGen.newHTML(r.managerName);
 
         let manager = new Manager(r.managerName, r.managerID, r.managerEmail, r.officeNumber);
-        htmlGen.addCard(htmlGen.writeHTML(manager));
+        htmlGen.writeHTML(htmlGen.addCard(manager));
         
         renderMenu();
     })
